@@ -4,7 +4,10 @@ const initialState = {
     Files: [],
     FIleToUpdate: null,
     FileToUpdateKey: null,
-    isLoading: null
+    FileKey: null,
+    isLoading: null,
+    isUpdate: null,
+    File: {}
 }
 
 const fileReducer = (state = initialState, action) => {
@@ -23,8 +26,12 @@ const fileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 FIleToUpdate: action.payload,
-                FileToUpdateKey: action.key
+                FileToUpdateKey: action.key,
+                FileKey: action.fileKey,
+                isUpdate: action.status
             }
+
+
         default:
             return state
     }

@@ -9,15 +9,33 @@ const checPrevuser = () => {
         return null
     }
 }
+const checPrevref = () => {
+    const ref = localStorage.getItem('ref')
+    if (ref) {
+        return ref
+    }
+    else {
+        return null
+    }
+}
 const initialState = {
-    User: checPrevuser()
+    User: checPrevuser(),
+    Dbref: checPrevref()
 }
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN:
-            return { ...state, User: action.payload }
+            return {
+                ...state,
+                User: action.payload,
+                Dbref: action.ref
+            }
         case LOGOUT:
-            return { ...state, User: action.payload }
+            return {
+                ...state,
+                User: action.payload,
+                Dbref: action.ref
+            }
         default:
             return state
     }

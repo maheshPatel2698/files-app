@@ -32,7 +32,8 @@ const Header = () => {
                         verified: res.user.emailVerified
                     }
                     localStorage.setItem('User', JSON.stringify(user))
-                    dispatch(userLogin(user))
+                    localStorage.setItem('ref', res.user.displayName)
+                    dispatch(userLogin(user, res.user.displayName))
 
                     toast.success("SuccessFully LoggedIn !",
                         {

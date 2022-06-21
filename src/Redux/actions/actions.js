@@ -1,15 +1,17 @@
 import { LOGIN, LOGOUT, SET_FILES, SET_LOADING, UPDATE_FILE } from "./action.type"
 
-export const userLogin = (data) => {
+export const userLogin = (data, dbref) => {
     return {
         type: LOGIN,
-        payload: data
+        payload: data,
+        ref: dbref
     }
 }
-export const userLogout = (data) => {
+export const userLogout = (data, dbref) => {
     return {
         type: LOGOUT,
-        payload: data
+        payload: data,
+        ref: dbref
     }
 }
 
@@ -27,10 +29,13 @@ export const setLoading = (loadingStatus) => {
     }
 }
 
-export const updateFile = (file, key) => {
+export const updateFile = (file, key, fileKey, isUpdate) => {
     return {
         type: UPDATE_FILE,
         payload: file,
-        key: key
+        key: key,
+        fileKey: fileKey,
+        status: isUpdate
     }
 }
+
