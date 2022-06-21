@@ -1,0 +1,32 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.nb {
+  box-shadow: 0 0 0.65rem rgb(36, 36, 36);
+}
+.nav-link {
+  margin: 0.4rem;
+  color: black;
+  cursor: pointer;
+}
+.nav-link a {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: black;
+}
+
+.i {
+  width: 3rem;
+  height: 3rem;
+}
+.me-auto {
+  align-items: center;
+}
+.navbar {
+  padding: 0.5rem;
+}
