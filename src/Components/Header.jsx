@@ -8,7 +8,7 @@ import { userLogin, userLogout, DarkModeOn, DarkModeOff } from "../Redux/actions
 import { useDispatch, useSelector } from 'react-redux'
 import { Image } from "react-bootstrap"
 import { toast } from 'react-toastify'
-import { FaUser, FaLightbulb } from "react-icons/fa"
+import { FaUser, FaLightbulb, FaRegLightbulb } from "react-icons/fa"
 import firebase from "firebase/compat/app"
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import firebaseConfig from "../Config/firebaseConfig"
@@ -121,7 +121,7 @@ const Header = () => {
                         <Nav.Item className="nav-link"><Link to="/files">Files</Link></Nav.Item>
                         <Nav.Item className="nav-link" onClick={handleActions}>{User?.email ? "Log Out" : "Log In"}</Nav.Item>
                         <Nav.Item className="nav-link">{User?.email ? <Image className="i" loading='lazy' roundedCircle src={User?.photo} /> : <FaUser size={22} />}</Nav.Item>
-                        <Nav.Item className="nav-link"> <FaLightbulb onClick={handleDarkMode} size={25} /> </Nav.Item>
+                        <Nav.Item onClick={handleDarkMode} className="nav-link"> {status ? <FaRegLightbulb size={25} /> : <FaLightbulb size={25} />} {status ? "Dark Mode Off" : "Dark Mode On"} </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
