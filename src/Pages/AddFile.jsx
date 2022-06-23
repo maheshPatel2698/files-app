@@ -196,6 +196,7 @@ const AddFile = () => {
 
     else {
         return (
+
             <div className="formContainer" >
 
                 <form onSubmit={handleSubmit} style={Dark}>
@@ -312,6 +313,7 @@ const AddFile = () => {
                     <button type='submit' className="btn btn-primary m-2">{isUpdate ? "Update Data" : "Add Data"}</button>
                 </form>
             </div>
+
         )
 
     }
