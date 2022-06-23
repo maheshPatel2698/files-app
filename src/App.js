@@ -25,7 +25,12 @@ const App = () => {
     dispatch(setLoading(false))
   }
   useEffect(() => {
-    getAllData()
+    if (Dbref === null) {
+      return
+    }
+    else {
+      getAllData()
+    }
   }, [Dbref])
   return (
     <>

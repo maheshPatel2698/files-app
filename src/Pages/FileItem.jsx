@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom"
 const FileItem = () => {
     const { Files } = useSelector(state => state.fileReducer)
     const { Dbref } = useSelector(state => state.userReducer)
+    const { Dark } = useSelector(state => state.darkModeReducer)
     const [searchValue, setSearchvalue] = useState("")
     const dispatch = useDispatch()
     let navigate = useNavigate()
@@ -68,14 +69,14 @@ const FileItem = () => {
     }
     return (
         <div>
-            <div className='idiv'>
+            <div className='idiv' style={Dark}>
                 <input className='in'
                     placeholder='Search GEM Contract Number Here'
                     value={searchValue} onChange={e => setSearchvalue(e.currentTarget.value)} type="text" />
                 <button id='btn' onClick={handleSearch} className='btn btn-primary'>Find</button>
 
             </div>
-            <Table striped bordered hover responsive>
+            <Table striped bordered hover responsive style={Dark}>
                 <thead>
                     <tr>
                         <th colSpan={5} >GEM Contract NO</th>

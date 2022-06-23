@@ -3,6 +3,7 @@
   margin: 0px;
   box-sizing: border-box;
 }
+
 .nb {
   box-shadow: 0 0 0.65rem rgb(36, 36, 36);
 }
@@ -26,6 +27,7 @@
 }
 .me-auto {
   align-items: center;
+  margin: auto;
 }
 .navbar {
   padding: 0.5rem;

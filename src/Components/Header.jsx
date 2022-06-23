@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Nav, Navbar, Container } from "react-bootstrap"
 import "../Css/Header.css"
 import { Link } from "react-router-dom"
+import "../../src/index.css"
 
-import { userLogin, userLogout } from "../Redux/actions/actions"
+import { userLogin, userLogout, DarkModeOn, DarkModeOff } from "../Redux/actions/actions"
 import { useDispatch, useSelector } from 'react-redux'
 import { Image } from "react-bootstrap"
 import { toast } from 'react-toastify'
@@ -18,8 +19,46 @@ const provider = new GoogleAuthProvider()
 const Header = () => {
     const dispatch = useDispatch()
     const { User } = useSelector(state => state.userReducer)
+    const { Dark, status } = useSelector(state => state.darkModeReducer)
+    const body = document.getElementById('body')
+
+    const checkDark = () => {
+        const dark = localStorage.getItem('dark')
+        if (dark) {
+            body.classList.add('body')
+        }
+        else {
+            body.classList.remove('body')
+        }
+    }
+
+    useEffect(() => {
+        checkDark()
+    }, [])
 
 
+    const handleDarkMode = () => {
+        if (!status) {
+            dispatch(DarkModeOn(true, {
+                transition: "all 0.7s ease",
+                backgroundColor: "#BB86FC",
+                color: "#2F2519"
+            }))
+            body.classList.add('body')
+            localStorage.setItem('body', 'body')
+            localStorage.setItem('dark', JSON.stringify({
+                transition: "all 0.7s ease",
+                backgroundColor: "#BB86FC",
+                color: "#2F2519"
+            }))
+        }
+        else {
+            dispatch(DarkModeOff(false, { transition: "all 0.7s ease" }))
+            localStorage.removeItem('dark')
+            body.classList.remove('body')
+            localStorage.removeItem('body')
+        }
+    }
     const handleLogin = async () => {
         try {
             await signInWithPopup(auth, provider)
@@ -72,9 +111,9 @@ const Header = () => {
         User?.email ? handleLogOut() : handleLogin()
     }
     return (
-        <Navbar className="nb" expand="lg">
+        <Navbar className="nb" expand="lg" style={Dark}>
             <Container>
-                <Navbar.Brand>React-Bootstrap</Navbar.Brand>
+                <Navbar.Brand>Files App</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -82,11 +121,11 @@ const Header = () => {
                         <Nav.Item className="nav-link"><Link to="/files">Files</Link></Nav.Item>
                         <Nav.Item className="nav-link" onClick={handleActions}>{User?.email ? "Log Out" : "Log In"}</Nav.Item>
                         <Nav.Item className="nav-link">{User?.email ? <Image className="i" loading='lazy' roundedCircle src={User?.photo} /> : <FaUser size={22} />}</Nav.Item>
-                        <Nav.Item className="nav-link"> <FaLightbulb size={25} /> </Nav.Item>
+                        <Nav.Item className="nav-link"> <FaLightbulb onClick={handleDarkMode} size={25} /> </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </Navbar >
 
     )
 }

@@ -16,7 +16,7 @@ const AddFile = () => {
     const dispatch = useDispatch()
     const { User, Dbref } = useSelector(state => state.userReducer)
     const { FIleToUpdate, FileToUpdateKey, FileKey, isUpdate } = useSelector(state => state.fileReducer)
-
+    const { Dark } = useSelector(state => state.darkModeReducer)
     const [contractNumber, setContractNumber] = useState("")
     const [contactNumber, setContactNumber] = useState("")
     const [AltContactNumber, setAltContactNumber] = useState("")
@@ -196,9 +196,9 @@ const AddFile = () => {
 
     else {
         return (
-            <div className="formContainer">
+            <div className="formContainer" >
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={Dark}>
                     <h4>Customer Details</h4>
                     <label htmlFor="Contract Number">Contract Number</label>
                     <input type="value"
