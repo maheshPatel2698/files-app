@@ -15,3 +15,9 @@
 li {
   margin: 0.4rem;
 }
+@media (max-width: 600px) {
+  .Home-Container {
+    width: auto;
+    margin: 0.5rem;
+  }
+}

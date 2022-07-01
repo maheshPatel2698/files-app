@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import Header from './Components/Header'
 import AddFile from './Pages/AddFile'
 import Files from './Pages/Files'
-import { CSSTransition, TransitionGroup } from "react-transition-group"
 import Home from './Pages/Home'
 import "./Css/App.css"
 import { setLoading, setFiles } from './Redux/actions/actions'
